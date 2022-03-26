@@ -1,9 +1,12 @@
 const posts = await (async () => {
-  let postContainer = document.createElement('div');
+  let postContainer = document.createElement('div'),
+      posts = [];
   
-  const posts = await fetch('http://localhost:3000/api/posts')
+  const data = await fetch('http://localhost:3000/api/posts')
     .then(res => res.json())
     .catch(err => console.log(err));
+
+  data.forEach(element => posts.unshift(element));
 
   posts.forEach(post => {
     let container = document.createElement('div'),
