@@ -12,8 +12,14 @@ const postAndComments = async id => {
   
   const postElement = returnPost(post),
         commentElements = returnComments(comments);
-        
-  document.body.append(postElement, commentElements);
+  let returnButton = document.createElement('button');
+
+  returnButton.innerText = 'Go back';
+  returnButton.addEventListener('click', () => {
+    location.reload();
+  });
+
+  document.body.append(postElement, commentElements, returnButton);
 }
 
 export default postAndComments;
