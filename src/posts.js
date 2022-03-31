@@ -1,4 +1,5 @@
 import { returnPost } from "./functions";
+import postAndComments from "./postAndComments";
 
 const posts = await (async () => {
   let postContainer = document.createElement('div'),
@@ -11,7 +12,9 @@ const posts = await (async () => {
   data.forEach(element => posts.unshift(element));
 
   posts.forEach(post => {
-    postContainer.appendChild(returnPost(post));
+    let postElement = returnPost(post);
+    postElement.addEventListener('click', () => postAndComments(post._id));
+    postContainer.appendChild(postElement);
   });
 
   postContainer.classList.add('container');
