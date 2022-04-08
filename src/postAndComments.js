@@ -3,14 +3,16 @@ import commentForm from "./commentForm";
 
 const postAndComments = async id => {
   clearBody();
-
+  let comments = [];
   const post = await fetch('http://localhost:3000/api/posts/' + id)
     .then(res => res.json())
     .catch(err => console.log(err));
-  const comments = await fetch('http://localhost:3000/api/posts/' + id + '/comments')
+  const data = await fetch('http://localhost:3000/api/posts/' + id + '/comments')
     .then(res => res.json())
     .catch(err => console.log(err));
   
+  data.forEach(obj => comments.unshift(obj));
+
   const postElement = returnPost(post),
         commentElements = returnComments(comments);
   let returnButton = document.createElement('button');
