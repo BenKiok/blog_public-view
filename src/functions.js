@@ -1,16 +1,19 @@
 const returnPost = post => {
 	let container = document.createElement('div'),
+			header = document.createElement('div'),
 			title = document.createElement('h1'),
 			content = document.createElement('p'),
 			time = document.createElement('p');
 	
 	container.classList.add('post');
+	header.classList.add('post-head');
 
 	title.innerText = post.title;
 	content.innerText = post.content;
-	time.innerText = post.time.created;
+	time.innerText = post.time.created.substring(4, 16);
 	
-	container.append(title, content, time);
+	header.append(title, time);
+	container.append(header, content);
 	return container;
 }
 
