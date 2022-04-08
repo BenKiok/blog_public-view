@@ -8,12 +8,12 @@ const commentForm = id => {
         contentInput = document.createElement('input'),
         button = document.createElement('button');
 
-  usernameLabel.innerText = 'Username';
+  usernameLabel.innerText = 'Username: ';
   usernameInput.type = 'text';
   usernameInput.name = 'username';
   usernameInput.placeholder = 'johndoe123';
   usernameInput.required = true;
-  contentLabel.innerText = 'Comment';
+  contentLabel.innerText = 'Comment: ';
   contentInput.type = 'text';
   contentInput.name = 'content';
   contentInput.placeholder = 'Wow! Great article!';
