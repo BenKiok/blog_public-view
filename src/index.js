@@ -1,5 +1,6 @@
 import posts from './posts';
+import header from './header';
 
 const app = (() => {
-  document.body.appendChild(posts);
+  document.body.append(header, posts);
 })();
