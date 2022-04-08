@@ -14,15 +14,21 @@ const postAndComments = async id => {
   data.forEach(obj => comments.unshift(obj));
 
   const postElement = returnPost(post),
-        commentElements = returnComments(comments);
+        commentElements = returnComments(comments),
+        commentTitle = document.createElement('h2');
   let returnButton = document.createElement('button');
 
-  returnButton.innerText = 'Go back';
+  postElement.id = 'post';
+  commentTitle.innerText = 'Comments';
+  returnButton.innerText = 'Back to articles';
   returnButton.addEventListener('click', () => {
     location.reload();
   });
 
-  document.body.append(postElement, returnButton, commentForm(id), commentElements);
+  commentElements.insertBefore(commentForm(id), commentElements.firstChild);
+  commentElements.insertBefore(commentTitle, commentElements.firstChild);
+  commentElements.appendChild(returnButton);
+  document.body.append(postElement, commentElements);
 }
 
 export default postAndComments;
