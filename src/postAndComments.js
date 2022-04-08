@@ -1,5 +1,6 @@
 import { returnPost, returnComments, clearBody } from "./functions";
 import commentForm from "./commentForm";
+import posts from './posts';
 
 const postAndComments = async id => {
   clearBody();
@@ -19,7 +20,8 @@ const postAndComments = async id => {
 
   returnButton.innerText = 'Go back';
   returnButton.addEventListener('click', () => {
-    location.reload();
+    clearBody();
+    document.body.appendChild(posts);
   });
 
   document.body.append(postElement, returnButton, commentForm(id), commentElements);
