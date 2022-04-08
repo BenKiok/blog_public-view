@@ -19,24 +19,27 @@ const returnPost = post => {
 
 const returnComments = arr => {
 	let container = document.createElement('div');
-	container.classList.add('container');
+	container.classList.add('comments');
 
 	arr.forEach(obj => {
 		let commentDiv = document.createElement('div'),
+				commentBase = document.createElement('div'),
 				content = document.createElement('p'),
 				user = document.createElement('p'),
 				time = document.createElement('p');
 		
 		commentDiv.classList.add('comment');
+		commentBase.classList.add('comment-base');
 		content.classList.add('content');
 		user.classList.add('username');
 		time.classList.add('time');
 		
 		content.innerText = obj.content;
 		user.innerText = obj.username;
-		time.innerText = obj.timeCreated;
+		time.innerText = obj.timeCreated.substring(4, 16) + ' at ' + obj.timeCreated.substring(16, 21);
 
-		commentDiv.append(content, user, time);
+		commentBase.append(user, time);
+		commentDiv.append(content, commentBase);
 		container.appendChild(commentDiv);
 	});
 
