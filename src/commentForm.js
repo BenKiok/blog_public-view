@@ -29,6 +29,7 @@ const commentForm = id => {
 
     if (usernameInput.value.length && contentInput.value.length) {
       (async () => {
+        let comments = [];
         const commentData = {
           username: usernameInput.value,
           content: contentInput.value,
@@ -49,12 +50,14 @@ const commentForm = id => {
         usernameInput.value = '';
         contentInput.value = '';
 
-        const commentArr = await fetch('http://localhost:3000/api/posts/' + id + '/comments')
+        const data = await fetch('http://localhost:3000/api/posts/' + id + '/comments')
           .then(res => res.json())
           .catch(err => console.log(err));
+
+        data.forEach(obj => comments.unshift(obj));
         
         Array.from(document.body.childNodes)[3].remove();
-        document.body.appendChild(returnComments(commentArr));
+        document.body.appendChild(returnComments(comments));
       })();
     }
   });
