@@ -2,12 +2,14 @@ import { returnComments } from "./functions";
 
 const commentForm = id => {
   const form = document.createElement('form'),
+        formTitle = document.createElement('h3'),
         usernameLabel = document.createElement('label'),
         usernameInput = document.createElement('input'),
         contentLabel = document.createElement('label'),
         contentInput = document.createElement('input'),
         button = document.createElement('button');
 
+  formTitle.innerText = 'Add Comment';
   usernameLabel.innerText = 'Username: ';
   usernameInput.type = 'text';
   usernameInput.name = 'username';
@@ -22,7 +24,7 @@ const commentForm = id => {
 
   usernameLabel.appendChild(usernameInput);
   contentLabel.appendChild(contentInput);
-  form.append(usernameLabel, contentLabel, button);
+  form.append(formTitle, usernameLabel, contentLabel, button);
 
   button.addEventListener('click', event => {
     event.preventDefault();
